@@ -1,0 +1,38 @@
+﻿using FluentValidation;
+using MediatR;
+
+namespace CleanArquitecture.Application.Behaviours
+{
+    public class ValidationBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest
+
+    {
+        private readonly IEnumerable<IValidator> _validators;
+
+        public ValidationBehaviour(IEnumerable<IValidator> validators)
+        {
+            _validators = validators;
+        }
+
+        public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
+        {
+            if (_validators.Any())
+            {
+                var context = new ValidationContext<TRequest>(request);
+                // Ejecuta todas las validaciones dentro del PipeLine
+                var validatorResults =
+                    await Task.WhenAll(_validators.Select(validation => validation.ValidateAsync(context, cancellationToken)));
+
+                var failures = validatorResults.Where(result => result.Errors != null)
+                                               .SelectMany(result => result.Errors)
+                                               .Where(error => error != null).ToArray();
+
+                if (validatorResults.Any())
+                {
+                    throw new Exceptions.ValidationException(failures);
+                }
+            }
+
+            return await next();
+        }
+    }
+}
