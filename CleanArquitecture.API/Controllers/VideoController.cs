@@ -18,13 +18,6 @@ public class VideoController : ControllerBase
 
     [HttpGet("{username}", Name = "GetVideo")]
     [ProducesResponseType(typeof(IEnumerable<VideoVm>), (int)HttpStatusCode.OK)]
-    public async Task<ActionResult<IEnumerable<VideoVm>>> GetVideosByUsername(string username)
-    {
-        var query = new GetVideosQuery(username);
-        var videos = await _mediator.Send(query);
-        return Ok(videos);
-    }
-
-
-
+    public async Task<ActionResult<IEnumerable<VideoVm>>> GetVideosByUsername(string username) 
+        => Ok(await _mediator.Send(new GetVideosQuery(username)));
 } 

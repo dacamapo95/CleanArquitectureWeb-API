@@ -7,7 +7,6 @@ namespace CleanArquitecture.Application.Features.Streamers.Commands.CreateStream
 {
     public class CreateCommandHandler : IRequestHandler<CreateStreamerCommand, int>
     {
-
         private readonly IStreamerRepository _streamerRepository;
         private IMapper _mapper;
 

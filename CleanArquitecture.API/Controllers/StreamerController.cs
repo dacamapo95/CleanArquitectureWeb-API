@@ -42,7 +42,6 @@ public class StreamerController : Controller
     public async Task<ActionResult> DeleteStreamer(int id)
     {
         var command = new DeleteStreamerCommand(id);
-
         await _mediator.Send(command);
         return NoContent();
     }

@@ -1,4 +1,5 @@
 ﻿using CleanArchitecture.Domain;
+using CleanArquitecture.Application.Features.Videos.Queries.GetVideos;
 
 namespace CleanArquitecture.Application.Contracts.Persistence
 {
@@ -7,5 +8,7 @@ namespace CleanArquitecture.Application.Contracts.Persistence
         Task<Video> GetVideoByName(string name);
 
         Task<IEnumerable<Video>> GetVideosByUserName(string userName);
+
+        Task<List<VideoVm>> GetVideosWithSelect();
     }
 }

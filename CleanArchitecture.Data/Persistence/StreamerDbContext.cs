@@ -25,8 +25,6 @@ public class StreamerDbContext : DbContext
             .WithMany(t => t.Videos)
             .UsingEntity<VideoActor>(
                 pt => pt.HasKey(e => new { e.ActorId, e.VideoId }));
-
-       //await StreamerDbContextSeed.SeedAsync(this);
     }
 
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
