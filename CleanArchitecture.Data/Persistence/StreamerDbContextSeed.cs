@@ -1,19 +1,16 @@
 ﻿using CleanArchitecture.Domain;
-using Microsoft.Extensions.Logging;
 
 namespace CleanArchitecture.Infrastructure.Persistence
 {
     public class StreamerDbContextSeed
     {
-
-        public static async Task SeedAsync(StreamerDbContext streamerDbContext,
-                                           ILogger<StreamerDbContextSeed> logger)
+        public static async Task SeedAsync(StreamerDbContext streamerDbContext)
+                                          
         {
             if (!streamerDbContext.Streamers!.Any())
             {
                 streamerDbContext.AddRange(InitializeStreamers());
                 await streamerDbContext.SaveChangesAsync();
-                logger.LogInformation("Se iniciializaron los Streamer.");
             }
         }
 

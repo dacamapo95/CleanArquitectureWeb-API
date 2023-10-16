@@ -11,18 +11,22 @@ public class StreamerDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Streamer>()
+        modelBuilder
+            .Entity<Streamer>()
             .HasMany(m => m.Videos)
             .WithOne(m => m.Streamer)
             .HasForeignKey(m => m.StreamerId)
             .IsRequired()
             .OnDelete(DeleteBehavior.Restrict);
 
-        modelBuilder.Entity<Video>()
+        modelBuilder
+            .Entity<Video>()
             .HasMany(p => p.Actors)
             .WithMany(t => t.Videos)
             .UsingEntity<VideoActor>(
-                pt => pt.HasKey(e => new { e.ActorId, e.VideoId });
+                pt => pt.HasKey(e => new { e.ActorId, e.VideoId }));
+
+       //await StreamerDbContextSeed.SeedAsync(this);
     }
 
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
@@ -39,7 +43,6 @@ public class StreamerDbContext : DbContext
                     entity.Entity.LastModifiedDate = DateTime.Now;
                     entity.Entity.LastModifiedBy = "system";
                     break;
-
             }
         }
 
@@ -50,8 +53,8 @@ public class StreamerDbContext : DbContext
 
     public DbSet<Video>? Videos { get; set; }
 
-    public DbSet<Actor>? Actores { get; set; }
+    public DbSet<Actor>? Actors { get; set; }
 
-    public DbSet<Director>? Directores { get; set; }
+    public DbSet<Director>? Directors { get; set; }
 
 }

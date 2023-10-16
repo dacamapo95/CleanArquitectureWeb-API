@@ -15,7 +15,9 @@ public static class DependencyInjection
         services.AddAutoMapper(assembly);
         services.AddValidatorsFromAssembly(assembly);
         services.AddMediatR(configuration =>
-            configuration.RegisterServicesFromAssemblies());
+        {
+            configuration.RegisterServicesFromAssemblies(typeof(DependencyInjection).Assembly);
+        });
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(UnhandledExceptionBehaviour<,>));
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
 
