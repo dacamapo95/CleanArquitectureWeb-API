@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using CleanArchitecture.Domain;
 using CleanArquitecture.Application.Contracts.Persistence;
+using FluentValidation;
 using MediatR;
 
 namespace CleanArquitecture.Application.Features.Streamers.Commands.CreateStreamer
@@ -12,12 +13,13 @@ namespace CleanArquitecture.Application.Features.Streamers.Commands.CreateStream
 
         public CreateCommandHandler(IStreamerRepository streamerRepository,
                                     IMapper mapper)
+                                  
         {
             _streamerRepository = streamerRepository;
             _mapper = mapper;
         }
 
-        public async Task<int> Handle(CreateStreamerCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(CreateStreamerCommand request, CancellationToken cancellationTo5ken)
         {
             Streamer streamerEntity = _mapper.Map<CreateStreamerCommand, Streamer>(request);
             Streamer newStreamerEntity = await _streamerRepository.AddAsync(streamerEntity);

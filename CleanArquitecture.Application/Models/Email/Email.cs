@@ -1,4 +1,4 @@
-﻿namespace CleanArquitecture.Application.Models
+﻿namespace CleanArquitecture.Application.Models.Email
 {
     public class Email
     {

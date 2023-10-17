@@ -11,7 +11,7 @@ public static class DependencyInjection
     public static IServiceCollection AddApplicationServices(this IServiceCollection services)
     {
         Assembly assembly = Assembly.GetExecutingAssembly();
-        
+
         services.AddAutoMapper(assembly);
         services.AddValidatorsFromAssembly(assembly);
         services.AddMediatR(configuration =>
