@@ -1,6 +1,6 @@
-using CleanArquitecture.Application;
+using CleanAchitecture.Identity.DependencyInjection;
 using CleanArchitecture.Infrastructure.DependencyInjection;
-
+using CleanArquitecture.Application;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,10 +8,21 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddApplicationServices();
+builder.Services.AddIdentityServices(builder.Configuration);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(
+        "CorsPolicy",
+        builder => builder.AllowAnyOrigin()
+                          .AllowAnyMethod()
+                          .AllowAnyHeader());
+});
 
 var app = builder.Build();
 
@@ -23,6 +34,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseAuthorization();
+
+app.UseCors("CorsPolicy");
 
 app.MapControllers();
 

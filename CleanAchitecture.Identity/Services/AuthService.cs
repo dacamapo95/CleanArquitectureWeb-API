@@ -4,12 +4,11 @@ using CleanArquitecture.Application.Models.Identity;
 using Microsoft.AspNetCore.Identity;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Linq;
 using Microsoft.IdentityModel.Tokens;
 
 namespace CleanAchitecture.Identity.Services
 {
-    internal class AuthService : IAuthService
+    public sealed class AuthService : IAuthService
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
@@ -40,10 +39,12 @@ namespace CleanAchitecture.Identity.Services
                 throw new Exception($"Failed to login {request.Email}");
             }
 
+            JwtSecurityToken jwtSecurityToken = await GenerateToken(user);
+
             return new AuthResponse()
             {
                 Id = user.Id,
-                Token = "",
+                Token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken),
                 Email = user.Email,
                 Username = user.UserName
             };
@@ -89,17 +90,16 @@ namespace CleanAchitecture.Identity.Services
             var roles = await _userManager.GetRolesAsync(applicationUser);
             var roleClaims = new List<Claim>();
 
-            foreach (string role in roles)
-            {
-                roleClaims.Add(new Claim(ClaimTypes.Role, role));
-            }
-
-            var claims =
-                new[]
-                {
-                    new Claim(JwtRegisteredClaimNames.Email, applicationUser.Email),
-                    new Claim(JwtRegisteredClaimNames.Sub, applicationUser.UserName),
-                }.Union(userClaims).Union(roleClaims);
+            IEnumerable<Claim> claims =
+                roles
+                .Select(role => new Claim(ClaimTypes.Role, role))
+                .Concat(new[]
+                        {
+                            new Claim(JwtRegisteredClaimNames.Email, applicationUser.Email),
+                            new Claim(JwtRegisteredClaimNames.Sub, applicationUser.UserName)
+                        })
+                .Concat(userClaims)
+                .Distinct();
 
             SymmetricSecurityKey symmetricSecurityKey =
                 new(System.Text.Encoding.UTF8.GetBytes(_jwtSettings.Key));
