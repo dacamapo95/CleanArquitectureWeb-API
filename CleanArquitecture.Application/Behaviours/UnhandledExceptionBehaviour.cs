@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 
 namespace CleanArquitecture.Application.Behaviours
 {
-    public class UnhandledExceptionBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest
+    public class UnhandledExceptionBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
     {
         private readonly ILogger<UnhandledExceptionBehaviour<TRequest, TResponse>> _logger;
 

@@ -38,10 +38,5 @@ namespace CleanArquitecture.Application.Features.Streamers.Commands.UpdateStream
 
             return Unit.Value;
         }
-
-        Task IRequestHandler<UpdateStreamerCommand>.Handle(UpdateStreamerCommand request, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

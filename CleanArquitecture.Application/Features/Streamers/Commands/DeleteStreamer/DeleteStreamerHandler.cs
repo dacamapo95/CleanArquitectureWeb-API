@@ -22,7 +22,7 @@ public class DeleteStreamerHandler : IRequestHandler<DeleteStreamerCommand>
         _logger = logger;
     }
 
-    public async Task Handle(DeleteStreamerCommand request, CancellationToken cancellationToken)
+    public async Task<Unit> Handle(DeleteStreamerCommand request, CancellationToken cancellationToken)
     {
         var streamerToDelete = await _streamerRepository.GetByIdAsync(request.Id);
 
@@ -34,5 +34,7 @@ public class DeleteStreamerHandler : IRequestHandler<DeleteStreamerCommand>
 
         await _streamerRepository.DeleteAsync(streamerToDelete);
         _logger.LogInformation($"El streamer con Id: {request.Id} fue eliminado exitosamente.");
+
+        return Unit.Value;
     }
 }
