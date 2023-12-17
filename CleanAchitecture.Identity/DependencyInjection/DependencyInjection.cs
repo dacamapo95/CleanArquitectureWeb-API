@@ -23,9 +23,11 @@ public static class DependencyInjection
             sqlServerOptions => sqlServerOptions.MigrationsAssembly(typeof(AuthDbContext).Assembly.FullName)));
 
         services.AddIdentity<ApplicationUser, IdentityRole>()
-            .AddEntityFrameworkStores<AuthDbContext>().AddDefaultTokenProviders();
+                .AddEntityFrameworkStores<AuthDbContext>()
+                .AddDefaultTokenProviders();
 
         services.AddTransient<IAuthService, AuthService>();
+
         services.AddAuthentication(options =>
         {
             options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

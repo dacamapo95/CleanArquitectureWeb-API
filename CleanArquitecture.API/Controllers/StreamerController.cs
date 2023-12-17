@@ -20,10 +20,8 @@ public class StreamerController : Controller
 
     [HttpPost(Name = "CreateStreamer")]
     [ProducesResponseType((int)HttpStatusCode.OK)]
-    public async Task<ActionResult<int>> CreateStreamer([FromBody] CreateStreamerCommand createStreamerCommand)
-    {
-       return await _mediator.Send(createStreamerCommand);
-    }
+    public async Task<ActionResult<int>> CreateStreamer([FromBody] CreateStreamerCommand createStreamerCommand) 
+        => await _mediator.Send(createStreamerCommand);
 
     [HttpPut]
     [ProducesResponseType((int)StatusCodes.Status204NoContent)]

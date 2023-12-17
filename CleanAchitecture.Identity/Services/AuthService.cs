@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.Extensions.Options;
 
 namespace CleanAchitecture.Identity.Services
 {
@@ -16,11 +17,11 @@ namespace CleanAchitecture.Identity.Services
 
         public AuthService(UserManager<ApplicationUser> userManager,
                           SignInManager<ApplicationUser> signInManager,
-                          JwtSettings jwtSettings)
+                          IOptions<JwtSettings> jwtSettings)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _jwtSettings = jwtSettings;
+            _jwtSettings = jwtSettings.Value;
         }
 
         public async Task<AuthResponse> Login(AuthRequest request)
