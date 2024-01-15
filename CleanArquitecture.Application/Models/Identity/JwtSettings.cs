@@ -1,13 +1,9 @@
 ﻿namespace CleanArquitecture.Application.Models.Identity;
 
-public class JwtSettings
+public record JwtSettings
 {
-    public string Key { get; set; } = string.Empty;
-    public string Issuer { get; set; } = string.Empty;
-    public string Audience { get; set; } = string.Empty;
-
-    /// <summary>
-    /// Duración en minutos
-    /// </summary>
-    public double Duration { get; set; }
+    public string Key { get; init; }
+    public string Issuer { get; init; }
+    public string Audience { get; init; }
+    public int Duration { get; init; }
 }

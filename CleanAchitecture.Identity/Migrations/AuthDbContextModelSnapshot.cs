@@ -99,16 +99,17 @@ namespace CleanAchitecture.Identity.Migrations
                         {
                             Id = "80126bc1-4cc2-4e92-9012-db4ebe60d8a2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9d436495-6efc-4384-b4de-f586fd261efd",
+                            ConcurrencyStamp = "12f8246d-dea3-4a44-84a0-944b51593bb8",
                             Email = "danielcami782@hotmail.com",
                             EmailConfirmed = true,
                             LastNames = "Males Poveda",
                             LockoutEnabled = false,
                             Name = "Dani",
+                            NormalizedEmail = "danielcami782@hotmail.com",
                             NormalizedUserName = "dacamapo",
-                            PasswordHash = "AQAAAAEAACcQAAAAEImebAPXZSl/LVC7vmCOvthJ9MWhDqwb+9G94oxQQmiAzGWjcyEYgvTfWSEgr+p/qA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEsyBs7ne4IDEnFEeFoIzLp4ZWgHqAcBe1M20cPZgcMRtoqC1E3yu6debq+JKamK8Q==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "601a1c85-acd0-491d-af5a-62eabe3eaab0",
+                            SecurityStamp = "bf180b64-a620-420c-9ba6-b0a0ea4876cc",
                             TwoFactorEnabled = false,
                             UserName = "dacamapo"
                         },
@@ -116,16 +117,17 @@ namespace CleanAchitecture.Identity.Migrations
                         {
                             Id = "c266c269-734f-46d6-9423-82907f7009d3",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3596b4fe-4892-4b2c-9ea6-5118192966d2",
+                            ConcurrencyStamp = "b2cbe9b2-3974-4b9b-9070-9f437b5b2c22",
                             Email = "pepito@hotmail.com",
                             EmailConfirmed = true,
                             LastNames = "Perez",
                             LockoutEnabled = false,
                             Name = "Pepe",
+                            NormalizedEmail = "pepito@hotmail.com",
                             NormalizedUserName = "pepitoperez",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPMRAVr7NfjK7HGoXsURAQYcPEsF6ApY1KZW09cZXYcklT3FdBI4V/K/tOAgCTvDxQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDik8I2nmSAAcC0kqiZxDqyzVoAUY7cr3rUT0+LCueQIZ9W+NFnK9RxXJZDgnEqrfg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1e815ce4-77ce-4116-b322-4e067a2295ec",
+                            SecurityStamp = "6aca4804-224b-44c3-b04c-205159351f32",
                             TwoFactorEnabled = false,
                             UserName = "pepitoperez"
                         });
@@ -161,14 +163,14 @@ namespace CleanAchitecture.Identity.Migrations
                         new
                         {
                             Id = "7d9f91b4-1631-4d46-88fe-de6a081bdd9c",
-                            ConcurrencyStamp = "01b3954e-780d-4f79-9027-b7253aed8a33",
+                            ConcurrencyStamp = "93a31558-4625-4887-9359-c413e8c2c5a2",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "0ae0959f-1425-4346-be1d-7872c2a10b70",
-                            ConcurrencyStamp = "57c4e6ae-ab1d-4ad9-a9d7-bcc3a08042fb",
+                            ConcurrencyStamp = "83258a66-9e75-44b0-9938-6ab5c33dadc7",
                             Name = "Operator",
                             NormalizedName = "OPERATOR"
                         });

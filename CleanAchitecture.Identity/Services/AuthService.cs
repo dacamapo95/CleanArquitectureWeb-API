@@ -6,6 +6,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Options;
+using Microsoft.EntityFrameworkCore;
 
 namespace CleanAchitecture.Identity.Services
 {
@@ -33,7 +34,10 @@ namespace CleanAchitecture.Identity.Services
                 throw new Exception($"El usuario con email {request.Email} no existe.");
             }
 
-            var AuthResult = await _signInManager.PasswordSignInAsync(user.UserName, request.Password, false, lockoutOnFailure: false);
+            var AuthResult = await _signInManager.PasswordSignInAsync(userName: user.UserName, 
+                                                                      password: request.Password,
+                                                                      isPersistent: false,
+                                                                      lockoutOnFailure: false);
 
             if (!AuthResult.Succeeded)
             {

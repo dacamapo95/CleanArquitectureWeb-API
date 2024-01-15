@@ -17,17 +17,19 @@ public class UserConfiguration : IEntityTypeConfiguration<ApplicationUser>
             //Admin
             Id = "80126bc1-4cc2-4e92-9012-db4ebe60d8a2",
             Email = "danielcami782@hotmail.com",
+            NormalizedEmail = "danielcami782@hotmail.com",
             Name = "Dani",
             LastNames = "Males Poveda",
             UserName = "dacamapo",
             NormalizedUserName = "dacamapo",
             PasswordHash = hasher.HashPassword(null, "Dani*12345"),
-            EmailConfirmed = true
+            EmailConfirmed = true,
         },
         new ApplicationUser
         {
             Id = "c266c269-734f-46d6-9423-82907f7009d3",
             Email = "pepito@hotmail.com", //Admin
+            NormalizedEmail = "pepito@hotmail.com",
             Name = "Pepe",
             LastNames = "Perez",
             UserName = "pepitoperez",

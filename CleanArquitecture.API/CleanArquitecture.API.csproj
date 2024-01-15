@@ -20,4 +20,6 @@
     <ProjectReference Include="..\CleanArquitecture.Application\CleanArquitecture.Application.csproj" />
   </ItemGroup>
 
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="https://json.schemastore.org/azure-iot-edge-deployment-template-4.0.json" /></VisualStudio></ProjectExtensions>
+
 </Project>

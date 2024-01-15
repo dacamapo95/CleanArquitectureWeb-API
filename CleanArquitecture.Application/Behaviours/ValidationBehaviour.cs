@@ -22,11 +22,11 @@ public class ValidationBehaviour<TRequest, TResponse> : IPipelineBehavior<TReque
             var validatorResults =
                 await Task.WhenAll(_validators.Select(validation => validation.ValidateAsync(context, cancellationToken)));
 
-            var failures = validatorResults.Where(result => result.Errors != null)
+            var failures = validatorResults.Where(result => result.Errors != null && result.Errors?.Count > 0)
                                            .SelectMany(result => result.Errors)
-                                           .Where(error => error != null).ToArray();
+                                           .ToArray();
 
-            if (validatorResults.Any())
+            if (failures.Any())
             {
                 throw new Exceptions.ValidationException(failures);
             }

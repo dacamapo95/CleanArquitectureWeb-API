@@ -2,6 +2,7 @@
 using CleanArquitecture.Application.Features.Streamers.Commands.DeleteStreamer;
 using CleanArquitecture.Application.Features.Streamers.Commands.UpdateStreamer;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -18,6 +19,7 @@ public class StreamerController : Controller
         _mediator = mediator;
     }
 
+    [Authorize(Roles = "Administrator")]
     [HttpPost(Name = "CreateStreamer")]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     public async Task<ActionResult<int>> CreateStreamer([FromBody] CreateStreamerCommand createStreamerCommand) 
@@ -34,13 +36,9 @@ public class StreamerController : Controller
     }
 
     [HttpDelete("{id}", Name = "DeleteStreamer")]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesDefaultResponseType]
     public async Task<ActionResult> DeleteStreamer(int id)
-    {
-        var command = new DeleteStreamerCommand(id);
-        await _mediator.Send(command);
-        return NoContent();
-    }
+        => Ok(await _mediator.Send(new DeleteStreamerCommand(id)));
 }

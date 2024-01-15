@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CleanAchitecture.Identity.Migrations
 {
-    public partial class Initial : Migration
+    public partial class Inital : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -161,8 +161,8 @@ namespace CleanAchitecture.Identity.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "0ae0959f-1425-4346-be1d-7872c2a10b70", "57c4e6ae-ab1d-4ad9-a9d7-bcc3a08042fb", "Operator", "OPERATOR" },
-                    { "7d9f91b4-1631-4d46-88fe-de6a081bdd9c", "01b3954e-780d-4f79-9027-b7253aed8a33", "Administrator", "ADMINISTRATOR" }
+                    { "0ae0959f-1425-4346-be1d-7872c2a10b70", "83258a66-9e75-44b0-9938-6ab5c33dadc7", "Operator", "OPERATOR" },
+                    { "7d9f91b4-1631-4d46-88fe-de6a081bdd9c", "93a31558-4625-4887-9359-c413e8c2c5a2", "Administrator", "ADMINISTRATOR" }
                 });
 
             migrationBuilder.InsertData(
@@ -170,8 +170,8 @@ namespace CleanAchitecture.Identity.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LastNames", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "80126bc1-4cc2-4e92-9012-db4ebe60d8a2", 0, "9d436495-6efc-4384-b4de-f586fd261efd", "danielcami782@hotmail.com", true, "Males Poveda", false, null, "Dani", null, "dacamapo", "AQAAAAEAACcQAAAAEImebAPXZSl/LVC7vmCOvthJ9MWhDqwb+9G94oxQQmiAzGWjcyEYgvTfWSEgr+p/qA==", null, false, "601a1c85-acd0-491d-af5a-62eabe3eaab0", false, "dacamapo" },
-                    { "c266c269-734f-46d6-9423-82907f7009d3", 0, "3596b4fe-4892-4b2c-9ea6-5118192966d2", "pepito@hotmail.com", true, "Perez", false, null, "Pepe", null, "pepitoperez", "AQAAAAEAACcQAAAAEPMRAVr7NfjK7HGoXsURAQYcPEsF6ApY1KZW09cZXYcklT3FdBI4V/K/tOAgCTvDxQ==", null, false, "1e815ce4-77ce-4116-b322-4e067a2295ec", false, "pepitoperez" }
+                    { "80126bc1-4cc2-4e92-9012-db4ebe60d8a2", 0, "12f8246d-dea3-4a44-84a0-944b51593bb8", "danielcami782@hotmail.com", true, "Males Poveda", false, null, "Dani", "danielcami782@hotmail.com", "dacamapo", "AQAAAAEAACcQAAAAEEsyBs7ne4IDEnFEeFoIzLp4ZWgHqAcBe1M20cPZgcMRtoqC1E3yu6debq+JKamK8Q==", null, false, "bf180b64-a620-420c-9ba6-b0a0ea4876cc", false, "dacamapo" },
+                    { "c266c269-734f-46d6-9423-82907f7009d3", 0, "b2cbe9b2-3974-4b9b-9070-9f437b5b2c22", "pepito@hotmail.com", true, "Perez", false, null, "Pepe", "pepito@hotmail.com", "pepitoperez", "AQAAAAEAACcQAAAAEDik8I2nmSAAcC0kqiZxDqyzVoAUY7cr3rUT0+LCueQIZ9W+NFnK9RxXJZDgnEqrfg==", null, false, "6aca4804-224b-44c3-b04c-205159351f32", false, "pepitoperez" }
                 });
 
             migrationBuilder.InsertData(
