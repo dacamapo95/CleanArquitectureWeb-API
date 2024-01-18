@@ -16,10 +16,10 @@ public class VideoRepository : Repository<Video>, IVideoRepository
     }
 
     public async Task<Video> GetVideoByName(string name)
-        => await _dbContext.Videos!.FirstOrDefaultAsync(video => video.Name == name);
+        => await _dbContext.Videos.FirstOrDefaultAsync(video => video.Name == name);
 
-    public async Task<IEnumerable<Video>> GetVideosByUserName(string userName)
-        => await _dbContext.Videos!.Where(video => video.CreatedBy == userName).ToListAsync();
+    public async Task<Video[]> GetVideosByUserName(string userName)
+        => await _dbContext.Videos!.Where(video => video.CreatedBy == userName).ToArrayAsync();
 
     public async Task<List<VideoVm>> GetVideosWithSelect()
     {

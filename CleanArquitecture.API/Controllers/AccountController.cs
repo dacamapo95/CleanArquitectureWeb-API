@@ -1,5 +1,6 @@
 ﻿using CleanArquitecture.Application.Contracts.Identity;
 using CleanArquitecture.Application.Models.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CleanArquitecture.API.Controllers;
@@ -19,7 +20,8 @@ public class AccountController : ControllerBase
     public async Task<ActionResult<AuthResponse>> Login([FromBody] AuthRequest request)
         => Ok(await _authService.Login(request));
 
+    [Authorize(Roles = "Administrator")]
     [HttpPost("Register")]
-    public async Task<ActionResult<RegistrationResponse>> Login([FromBody] RegistrationRequest request)
+    public async Task<ActionResult<RegistrationResponse>> Register([FromBody] RegistrationRequest request)
        => Ok(await _authService.Register(request));
 }

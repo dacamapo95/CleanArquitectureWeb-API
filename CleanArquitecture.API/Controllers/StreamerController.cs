@@ -25,6 +25,13 @@ public class StreamerController : Controller
     public async Task<ActionResult<int>> CreateStreamer([FromBody] CreateStreamerCommand createStreamerCommand) 
         => await _mediator.Send(createStreamerCommand);
 
+    [HttpDelete("{id}", Name = "DeleteStreamer")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesDefaultResponseType]
+    public async Task<ActionResult> DeleteStreamer(int id)
+        => Ok(await _mediator.Send(new DeleteStreamerCommand(id)));
+
     [HttpPut]
     [ProducesResponseType((int)StatusCodes.Status204NoContent)]
     [ProducesResponseType((int)StatusCodes.Status404NotFound)]
@@ -34,11 +41,4 @@ public class StreamerController : Controller
         await _mediator.Send(updateStreamerCommand);
         return NoContent();
     }
-
-    [HttpDelete("{id}", Name = "DeleteStreamer")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [ProducesDefaultResponseType]
-    public async Task<ActionResult> DeleteStreamer(int id)
-        => Ok(await _mediator.Send(new DeleteStreamerCommand(id)));
 }

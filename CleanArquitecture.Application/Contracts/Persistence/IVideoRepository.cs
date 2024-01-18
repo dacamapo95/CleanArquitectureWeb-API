@@ -7,7 +7,7 @@ namespace CleanArquitecture.Application.Contracts.Persistence
     {
         Task<Video> GetVideoByName(string name);
 
-        Task<IEnumerable<Video>> GetVideosByUserName(string userName);
+        Task<Video[]> GetVideosByUserName(string userName);
 
         Task<List<VideoVm>> GetVideosWithSelect();
     }

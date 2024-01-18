@@ -1,5 +1,6 @@
 using CleanAchitecture.Identity.DependencyInjection;
 using CleanArchitecture.Infrastructure.DependencyInjection;
+using CleanArquitecture.API.Middleware;
 using CleanArquitecture.Application;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -32,9 +33,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+
+
 app.UseAuthentication();
 
 app.UseAuthorization();
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseCors("CorsPolicy");
 
