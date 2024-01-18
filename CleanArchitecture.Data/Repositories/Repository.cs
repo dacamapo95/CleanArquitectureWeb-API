@@ -22,6 +22,11 @@ public class Repository<T> : IRepository<T> where T : BaseDomainModel
         return entity;
     }
 
+    public void AddEntity(T entity)
+    {
+        _dbContext.Set<T>().Add(entity);
+    }
+
     public async Task<T> UpdateAsync(T entity)
     {
         _dbContext.Entry(entity).State = EntityState.Modified;
@@ -30,10 +35,21 @@ public class Repository<T> : IRepository<T> where T : BaseDomainModel
         return entity;
     }
 
+    public void UpdateEntity(T entity)
+    {
+        _dbContext.Entry(entity).State = EntityState.Modified;
+        _dbContext.Set<T>().Update(entity);
+    }
+
     public async Task DeleteAsync(T entity)
     {
         _dbContext.Remove(entity);
         await _dbContext.SaveChangesAsync();
+    }
+
+    public void DeleteEntity(T entity)
+    {
+        _dbContext.Remove(entity);
     }
 
     public async Task<T> GetByIdAsync(int id) => await _dbContext.Set<T>().FindAsync(id);
@@ -59,7 +75,7 @@ public class Repository<T> : IRepository<T> where T : BaseDomainModel
     public async Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate = null,
                                                  Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
                                                  List<Expression<Func<T, object>>> includes = null,
-                                                 string includeString = null, 
+                                                 string includeString = null,
                                                  bool disableTracking = true)
     {
         IQueryable<T> query = _dbContext.Set<T>();
@@ -72,4 +88,6 @@ public class Repository<T> : IRepository<T> where T : BaseDomainModel
 
         return await query.ToListAsync();
     }
+
+
 }

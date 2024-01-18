@@ -27,4 +27,8 @@ public interface IRepository<T> where T : BaseDomainModel
                                     List<Expression<Func<T, object>>> includes = null,
                                     string includeString = null,
                                     bool disableTracking = true);
+
+    void AddEntity(T entity);
+    void UpdateEntity(T entity);
+    void DeleteEntity(T entity);
 }
