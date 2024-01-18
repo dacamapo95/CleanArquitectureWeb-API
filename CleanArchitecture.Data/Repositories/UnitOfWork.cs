@@ -21,6 +21,8 @@ namespace CleanArchitecture.Infrastructure.Repositories
             _context.Dispose();
         }
 
+        public async Task<int> SaveTransaction() => await _context.SaveChangesAsync();
+
         public IRepository<TEntity> Repository<TEntity>() where TEntity : BaseDomainModel
         {
             if (_repositories == null) _repositories = new Hashtable();
@@ -35,11 +37,6 @@ namespace CleanArchitecture.Infrastructure.Repositories
             }
 
             return (IRepository<TEntity>)_repositories[type]!;
-        }
-
-        public Task<int> SaveTransaction()
-        {
-            throw new NotImplementedException();
         }
     }
 }
