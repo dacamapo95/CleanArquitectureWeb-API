@@ -13,11 +13,9 @@ namespace CleanArquitecture.Application.Features.Streamers.Commands.UpdateStream
         private readonly IMapper _mapper;
         private readonly ILogger<UpdateStreamerCommandHandler> _logger;
 
-        public UpdateStreamerCommandHandler(IStreamerRepository streamerRepository, 
-                                            IMapper mapper,
-                                            ILogger<UpdateStreamerCommandHandler> logger)
+        public UpdateStreamerCommandHandler(IUnitOfWork unitOfWork, IMapper mapper, ILogger<UpdateStreamerCommandHandler> logger)
         {
-            _streamerRepository = streamerRepository;
+            _unitOfWork = unitOfWork;
             _mapper = mapper;
             _logger = logger;
         }
