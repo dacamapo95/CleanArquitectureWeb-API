@@ -8,22 +8,21 @@ namespace CleanArquitecture.Application.Features.Streamers.Commands.CreateStream
 {
     public class CreateCommandHandler : IRequestHandler<CreateStreamerCommand, int>
     {
-        private readonly IStreamerRepository _streamerRepository;
         private IMapper _mapper;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public CreateCommandHandler(IStreamerRepository streamerRepository,
-                                    IMapper mapper)
-                                  
+        public CreateCommandHandler(IMapper mapper, IUnitOfWork unitOfWork)
         {
-            _streamerRepository = streamerRepository;
             _mapper = mapper;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<int> Handle(CreateStreamerCommand request, CancellationToken cancellationTo5ken)
         {
             Streamer streamerEntity = _mapper.Map<CreateStreamerCommand, Streamer>(request);
-            Streamer newStreamerEntity = await _streamerRepository.AddAsync(streamerEntity);
-            return newStreamerEntity.Id;
+            _unitOfWork.StreamerRepository.AddEntity(streamerEntity);
+            await _unitOfWork.SaveTransaction();
+            return streamerEntity.Id;
         }
     }
 }

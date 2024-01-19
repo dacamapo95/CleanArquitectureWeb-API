@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 
 namespace CleanArchitecture.Infrastructure.DependencyInjection;
 
@@ -20,6 +19,7 @@ public static class DependencyInjection
                    .LogTo(Console.WriteLine, new[] { RelationalEventId.CommandExecuted });
         });
 
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
         services.AddScoped<IVideoRepository, VideoRepository>();
         services.AddScoped<IStreamerRepository, StreamerRepository>();

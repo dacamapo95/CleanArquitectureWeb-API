@@ -12,4 +12,8 @@ public interface IUnitOfWork : IDisposable
     IRepository<TEntity> Repository<TEntity>() where TEntity : BaseDomainModel;
 
     Task<int> SaveTransaction();
+
+    IVideoRepository VideoRepository { get; }
+
+    IStreamerRepository StreamerRepository { get; }
 }
